@@ -82,5 +82,5 @@ st.dataframe(fila[["prioridade", "equipamento", "tecnologia", "disponibilidade",
                    "valor_rs_ano", "dec_min_ano", "custo_visita_rs"]].head(30)
              .style.format({"disponibilidade": "{:.2%}", "excesso_pp": "{:.2f}", "valor_rs_ano": "R$ {:,.0f}",
                             "dec_min_ano": "{:.4f}"}), hide_index=True)
-st.caption("Valor por p.p. de indisponibilidade: projeto automation-impact (Energisa MT, faixa média). "
+st.caption("Valor por p.p. de indisponibilidade: projeto automation-impact (dados públicos da ANEEL, faixa média). "
            "Custos de visita são premissas ilustrativas em config_padrao.yaml.")

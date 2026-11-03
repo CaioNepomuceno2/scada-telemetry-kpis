@@ -138,7 +138,7 @@ prioridade      = ordem decrescente de valor_rs_ano / custo_visita_rs
 
 **De onde vem o valor por p.p.** Do projeto
 [automation-impact](https://github.com/CaioNepomuceno2/automation-impact), arquivo `reports/valor.json`. Ali,
-1 p.p. de indisponibilidade da telemetria dos 4.000 religadores da Energisa MT custa 0,70 a 1,41 min de DEC/ano,
+1 p.p. de indisponibilidade da telemetria dos 4.000 religadores da distribuidora estudada no automation-impact custa 0,70 a 1,41 min de DEC/ano,
 ou R$ 134 mil a R$ 268 mil/ano na visão social (R$ 35 mil a R$ 70 mil/ano só em compensações). A faixa vem da
 premissa sobre quanto do benefício do religador depende de comunicação. A fila usa o ponto médio, cerca de
 **R$ 50 por p.p. por equipamento médio por ano**.

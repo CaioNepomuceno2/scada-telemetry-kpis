@@ -67,7 +67,7 @@ relógio dessincronizado.
 | Falhas atribuídas ao canal, não ao equipamento | assertividade de 89,5% passa a 89,9% quando se excluem os comandos enviados com o canal em falha | **medido** |
 | Ação antes da falha | 78% das degradações detectadas, 21 dias antes da visita (mediana); 0,1% de alarme falso | **medido** sobre a frota sintética |
 | Mais valor com as mesmas visitas | 3,4× (25 visitas) a 1,6× (100 visitas) mais valor que "pior disponibilidade primeiro" | **backtest** sintético; o valor por p.p. é **medido** no automation-impact |
-| Preço da indisponibilidade | cerca de R$ 50/ano e 0,00026 min de DEC por p.p. de um equipamento médio | **medido** (Energisa MT) + **premissa** sobre o quanto do benefício depende de comunicação |
+| Preço da indisponibilidade | cerca de R$ 50/ano e 0,00026 min de DEC por p.p. de um equipamento médio | **medido** (projeto automation-impact, dados públicos da ANEEL) + **premissa** sobre o quanto do benefício depende de comunicação |
 | Escala de produção | 12,2 milhões de eventos/ano em 24 s | **medido** (benchmark) |
 
 ### Por que aplicar
@@ -336,7 +336,7 @@ cerca de 35 s. `scripts/benchmark.py` grava `reports/benchmark.json`.
 * **Dados sintéticos.** O gerador tem premissas simples: falhas Poisson independentes, sem eventos regionais
   como tempestades ou queda de uma operadora celular, que derrubam muitos equipamentos ao mesmo tempo. A
   validação prova o cálculo, não o comportamento de uma frota real.
-* **Valor por p.p.** Vem de um efeito médio medido para religadores na Energisa MT e de uma premissa sobre a
+* **Valor por p.p.** Vem de um efeito médio medido para religadores no projeto automation-impact, com dados públicos da ANEEL, e de uma premissa sobre a
   fração do benefício que depende de comunicação. O peso por clientes a jusante é um proxy.
 * **Custos de visita e probabilidade de sucesso do reparo** são ilustrativos.
 * **Expurgo de manutenção** supõe janelas sem sobreposição no mesmo equipamento.

@@ -70,7 +70,7 @@ analitica:
     # taxa-base mínima (falhas/semana): evita limites apertados demais em equipamentos que quase não falham
     piso_taxa: 0.2
 
-# Valor da indisponibilidade. Fonte: projeto automation-impact (reports/valor.json), Energisa MT,
+# Valor da indisponibilidade. Fonte: projeto automation-impact (reports/valor.json) (dados públicos da ANEEL),
 # frota de 4.000 religadores. Faixa = premissa da fração do benefício que depende de comunicação.
 valor:
   frota_referencia: 4000
