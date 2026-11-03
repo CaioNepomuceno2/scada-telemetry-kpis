@@ -1,0 +1,83 @@
+# Configuração padrão do telemetry-kpis.
+# Copie este arquivo, ajuste ao seu SCADA/ADMS e passe com --config.
+
+# Mapeamento do log bruto (ponto, estado) -> evento canônico.
+# evento: COMM_FALHA | COMM_NORMAL | COMANDO | ESTADO
+# familia agrupa comando e retorno do mesmo dispositivo lógico (ANSI 52 = disjuntor, 79 = religamento).
+mapeamento:
+  - {ponto: COMUNICACAO, estado: FALHA,       evento: COMM_FALHA}
+  - {ponto: COMUNICACAO, estado: NORMAL,      evento: COMM_NORMAL}
+  - {ponto: CMD_52,      estado: ABRIR,       evento: COMANDO, familia: "52", valor: ABRIR,       esperado: ABERTO}
+  - {ponto: CMD_52,      estado: FECHAR,      evento: COMANDO, familia: "52", valor: FECHAR,      esperado: FECHADO}
+  - {ponto: CMD_79,      estado: BLOQUEAR,    evento: COMANDO, familia: "79", valor: BLOQUEAR,    esperado: BLOQUEADO}
+  - {ponto: CMD_79,      estado: DESBLOQUEAR, evento: COMANDO, familia: "79", valor: DESBLOQUEAR, esperado: DESBLOQUEADO}
+  - {ponto: "52",        estado: ABERTO,      evento: ESTADO,  familia: "52", valor: ABERTO}
+  - {ponto: "52",        estado: FECHADO,     evento: ESTADO,  familia: "52", valor: FECHADO}
+  - {ponto: "79",        estado: BLOQUEADO,   evento: ESTADO,  familia: "79", valor: BLOQUEADO}
+  - {ponto: "79",        estado: DESBLOQUEADO, evento: ESTADO, familia: "79", valor: DESBLOQUEADO}
+
+disponibilidade:
+  # eventos iguais e consecutivos do mesmo equipamento a menos de N segundos são duplicados
+  janela_duplicado_s: 2.0
+  # fim de falha inferido (FALHA seguida de outra FALHA = NORMAL perdido):
+  #   proximo_evento      -> a falha dura até o próximo evento (pode inflar a indisponibilidade em semanas)
+  #   mediana_equipamento -> a falha dura a mediana das falhas bem pareadas do mesmo equipamento
+  fim_inferido: mediana_equipamento
+  # FALHA seguida de outra FALHA (o NORMAL se perdeu):
+  #   fechar_no_novo_inicio -> fecha a primeira falha no instante da segunda (erro limitado ao intervalo entre elas)
+  #   manter_primeiro       -> ignora a segunda FALHA e espera o próximo NORMAL
+  inicio_repetido: fechar_no_novo_inicio
+  # NORMAL sem FALHA anterior no período: ignorar | abrir_no_inicio_periodo
+  fim_sem_inicio: ignorar
+  # falha ainda aberta no fim do período: fechar_no_fim_periodo | descartar
+  aberto_no_fim: fechar_no_fim_periodo
+  # falhas mais curtas que isso não contam (0 = todas)
+  duracao_minima_s: 0
+  # limite para falhas cujo fim foi inferido (aberta ou fechada por novo início); null = sem limite
+  duracao_maxima_sem_fim_h: null
+  # ordenar eventos pelo timestamp (false = ordem do arquivo; só para demonstrar o viés)
+  ordenar_por_timestamp: true
+  # descontar janelas de manutenção programada do numerador e do denominador
+  expurgar_manutencao: true
+
+assertividade:
+  # retorno esperado em até N segundos = SUCESSO
+  tempo_limite_s: 30
+  # retorno esperado depois do limite mas dentro da busca = ATRASADO
+  janela_busca_s: 600
+  # comandos iguais repetidos dentro desta janela contam como uma tentativa
+  janela_repeticao_s: 60
+  # agrupar | contar_todos
+  repetidos: agrupar
+  # o estado vem com o relógio do equipamento e o comando com o do centro: aceita retorno até N s "antes"
+  tolerancia_relogio_s: 2.0
+
+analitica:
+  meta_disponibilidade: 0.98
+  cronico:
+    janela_meses: 4
+    meses_abaixo_meta: 3
+  flapping:
+    falhas_mes_min: 30
+    duracao_mediana_max_min: 5
+    meses_min: 2
+  ewma:
+    lambda: 0.2
+    L: 4.0
+    semanas_base: 12
+    # encolhimento da taxa-base do equipamento para a média da tecnologia (semanas equivalentes)
+    peso_prior_semanas: 8
+    # taxa-base mínima (falhas/semana): evita limites apertados demais em equipamentos que quase não falham
+    piso_taxa: 0.2
+
+# Valor da indisponibilidade. Fonte: projeto automation-impact (reports/valor.json), Energisa MT,
+# frota de 4.000 religadores. Faixa = premissa da fração do benefício que depende de comunicação.
+valor:
+  frota_referencia: 4000
+  dec_min_ano_por_pp_frota: [0.7043, 1.4086]
+  rs_ano_por_pp_frota_social: [133847, 267694]
+  rs_ano_por_pp_frota_compensacao: [34932, 69864]
+  # premissas ilustrativas da fila de manutenção (troque pelos custos reais)
+  custo_visita_rs: {fibra: 2500, radio: 1500, celular: 900}
+  prob_sucesso_reparo: 0.8
+  disponibilidade_pos_reparo: 0.99

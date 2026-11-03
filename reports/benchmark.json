@@ -1,0 +1,36 @@
+{
+ "equipamentos": 40000,
+ "eventos_log": 12154720,
+ "parquet_mb": 204.4,
+ "segundos_geracao": 28.2,
+ "segundos_gravacao_parquet": 7.8,
+ "pico_memoria_gerador_mb": 3640,
+ "threads_duckdb": 2,
+ "maquina": {
+  "cpus": 4,
+  "sistema": "Linux-6.18.44-fc-v230-x86_64-with-glibc2.39",
+  "python": "3.13.18"
+ },
+ "tempos_s": {
+  "carregar_e_normalizar": 1.508056409000119,
+  "parear_falhas": 4.976054629999908,
+  "disponibilidade_diaria": 8.511831137000172,
+  "disponibilidade_mensal": 2.6822158080001373,
+  "assertividade": 6.526638970999784,
+  "total_motor": 24.20479695500012
+ },
+ "stats": {
+  "linhas_log": 12154720,
+  "eventos_mapeados": 11329002,
+  "linhas_nao_mapeadas": 825718,
+  "intervalos": 3339470,
+  "intervalos_abertos": 313,
+  "intervalos_fim_inferido": 9703,
+  "eventos_comm_descartados": 133936,
+  "tentativas_comando": 1258493,
+  "comandos_brutos": 1326478
+ },
+ "linhas_fato_diario": 14600000,
+ "pico_memoria_motor_mb": 4061.12109375,
+ "eventos_por_segundo_motor": 502162
+}

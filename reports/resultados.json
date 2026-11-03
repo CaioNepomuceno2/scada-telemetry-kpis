@@ -1,0 +1,165 @@
+{
+ "frota_sintetica": {
+  "equipamentos": 4000,
+  "periodo": [
+   "2025-01-01",
+   "2026-01-01"
+  ],
+  "seed": 42,
+  "eventos_log": 1222095,
+  "eventos_log_sem_ruido": 1201700,
+  "tentativas_comando_verdade": 127508,
+  "perfis": {
+   "normal": 3584,
+   "problematico": 178,
+   "degradando": 157,
+   "flapping": 81
+  },
+  "tipos": {
+   "religador": 2863,
+   "disjuntor": 568,
+   "chave": 387,
+   "rtu": 182
+  },
+  "segundos_geracao": 3.4
+ },
+ "validacao": {
+  "disponibilidade_frota_verdade": 0.9951808436470158,
+  "sem_ruido": {
+   "erro_frota_pp": -5.662137425588298e-13,
+   "mae_equipamento_pp": 7.459952100496991e-12,
+   "p95_equipamento_pp": 2.1172508191114045e-11,
+   "max_equipamento_pp": 1.5281109710940655e-10,
+   "n_falhas_calc": 335670,
+   "acerto_comandos": 0.9999607861590827
+  },
+  "com_ruido": {
+   "erro_frota_pp": -0.007201829682679239,
+   "mae_equipamento_pp": 0.012245293711185877,
+   "p95_equipamento_pp": 0.011057844283061101,
+   "max_equipamento_pp": 16.936944892366878,
+   "n_falhas_calc": 334679,
+   "acerto_comandos": 0.9954692047510423
+  },
+  "falhas_verdade": 335670,
+  "estatisticas_motor": {
+   "linhas_log": 1222095,
+   "eventos_mapeados": 1138814,
+   "linhas_nao_mapeadas": 83281,
+   "intervalos": 334679,
+   "intervalos_abertos": 29,
+   "intervalos_fim_inferido": 988,
+   "eventos_comm_descartados": 13524,
+   "tentativas_comando": 127130,
+   "comandos_brutos": 133973
+  },
+  "assertividade_frota_verdade": 0.898774978824858,
+  "assertividade_frota_calculada": 0.8945331550381499
+ },
+ "indicadores": {
+  "disponibilidade_frota": 0.995108825350189,
+  "assertividade_frota": 0.8945331550381499,
+  "assertividade_com_comunicacao": 0.8992796084106311,
+  "resultados_comando": {
+   "SUCESSO": 0.8945,
+   "SEM_RETORNO": 0.058,
+   "ATRASADO": 0.0242,
+   "RETORNO_INESPERADO": 0.018,
+   "SEM_COMUNICACAO": 0.0053
+  },
+  "tempo_resposta_p50_s": 4.2084695,
+  "tempo_resposta_p95_s": 11.095892
+ },
+ "analitica": {
+  "cronicos": {
+   "sinalizados": 147,
+   "verdadeiros": 178,
+   "precisao": 0.9931972789115646,
+   "recall": 0.8202247191011236
+  },
+  "flapping": {
+   "sinalizados": 81,
+   "verdadeiros": 81,
+   "precisao": 1.0,
+   "recall": 1.0
+  },
+  "pareto_equipamentos": {
+   "top_1pct": 0.1367369734152936,
+   "top_5pct": 0.4603413076952813,
+   "top_10pct": 0.5245263338152634,
+   "top_20pct": 0.6174171995055382
+  },
+  "pareto_subestacoes": {
+   "top_5pct": 0.10463147792864547,
+   "top_10pct": 0.18683837205304976,
+   "top_20pct": 0.3323530157953066
+  },
+  "degradacao": {
+   "equipamentos_degradando": 157,
+   "detectados_ewma": 0.7834394904458599,
+   "detectados_regra_mensal": 0.17197452229299362,
+   "antecedencia_mediana_ewma_dias": 21.0,
+   "antecedencia_mediana_mensal_dias": 13.0,
+   "falso_alarme_normais": 0.0011160714285714285,
+   "semanas_monitoradas": 41
+  }
+ },
+ "fila": {
+  "corte_observacao": "2025-10-01",
+  "ganho_medido_em": [
+   "2025-10-01",
+   "2026-01-01"
+  ],
+  "rs_ano_por_estrategia": {
+   "aleatoria": {
+    "25": 156.0,
+    "50": 328.0,
+    "100": 658.0,
+    "200": 1226.0
+   },
+   "mais_antigo": {
+    "25": 0.0,
+    "50": 0.0,
+    "100": 0.0,
+    "200": 1119.0
+   },
+   "pior_disponibilidade": {
+    "25": 3116.0,
+    "50": 6427.0,
+    "100": 13183.0,
+    "200": 24580.0
+   },
+   "valor": {
+    "25": 10712.0,
+    "50": 15461.0,
+    "100": 20731.0,
+    "200": 24579.0
+   }
+  },
+  "valor_vs_aleatoria": {
+   "25": 68.46,
+   "50": 47.2,
+   "100": 31.51,
+   "200": 20.06
+  },
+  "valor_vs_pior_disponibilidade": {
+   "25": 3.44,
+   "50": 2.41,
+   "100": 1.57,
+   "200": 1.0
+  },
+  "valor_vs_mais_antigo": {
+   "25": null,
+   "50": null,
+   "100": null,
+   "200": 21.97
+  },
+  "equipamentos_payback_ate_1_ano": 1,
+  "equipamentos_payback_ate_3_anos": 11,
+  "valor_por_pp_equipamento_medio": {
+   "rs_social": 50.192625,
+   "rs_compensacao": 13.0995,
+   "dec_min": 0.0002641125
+  }
+ }
+}
