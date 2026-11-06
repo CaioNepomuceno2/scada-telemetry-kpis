@@ -337,7 +337,7 @@ cerca de 35 s. `scripts/benchmark.py` grava `reports/benchmark.json`.
   como tempestades ou queda de uma operadora celular, que derrubam muitos equipamentos ao mesmo tempo. A
   validação prova o cálculo, não o comportamento de uma frota real.
 * **Valor por p.p.** Vem de um efeito médio medido para religadores no projeto automation-impact, com dados públicos da ANEEL, e de uma premissa sobre a
-  fração do benefício que depende de comunicação. O peso por clientes a jusante é um proxy.
+  fração do benefício que depende de comunicação. O peso por clientes a jusante é um proxy. **Essa fração é a parte frágil:** ela vem do canal da duração, que no projeto automation-impact vale 57% do efeito no TWFE, 86% no estimador de Callaway & Sant'Anna e 17% se a tendência anterior da duração continuar. Por isso o preço por p.p. deve ser lido como ordem de grandeza, não como medida precisa.
 * **Custos de visita e probabilidade de sucesso do reparo** são ilustrativos.
 * **Expurgo de manutenção** supõe janelas sem sobreposição no mesmo equipamento.
 * **Retorno inesperado** só considera estados da mesma família. Um estado espontâneo da proteção que chega logo
